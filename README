@@ -12,21 +12,21 @@ SUPPORT AND DOCUMENTATION
 After installing, you can find documentation for this module with the
 perldoc command.
 
-    perldoc Test::TODO::When
+    perldoc Test::TODO::Until
 
 You can also look for information at:
 
     RT, CPAN's request tracker (report bugs here)
-        http://rt.cpan.org/NoAuth/Bugs.html?Dist=Test-TODO-When
+        http://rt.cpan.org/NoAuth/Bugs.html?Dist=Test-TODO-Until
 
     AnnoCPAN, Annotated CPAN documentation
-        http://annocpan.org/dist/Test-TODO-When
+        http://annocpan.org/dist/Test-TODO-Until
 
     CPAN Ratings
-        http://cpanratings.perl.org/d/Test-TODO-When
+        http://cpanratings.perl.org/d/Test-TODO-Until
 
     Search CPAN
-        http://search.cpan.org/dist/Test-TODO-When/
+        http://search.cpan.org/dist/Test-TODO-Until/
 
 
 LICENSE AND COPYRIGHT
