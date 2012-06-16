@@ -1,37 +1,52 @@
-package Test::TODO::When;
-
-use v5.12;
-
-=head1 NAME
-
-Test::TODO::When - The great new Test::TODO::When!
-
-=head1 VERSION
-
-Version 0.01
-
-=cut
+package Test::TODO::Until;
+use 5.12.0;
 
 our $VERSION = '0.01';
 
 
+sub new
+{
+    my ($class, $args) = @_;
+    my $builder = $$args{builder} // die "Need a Test::Builder object\n";
+    my $now = $$args{now} // DateTime->now;
+    my $out_fh = $$args{out_fh} // \*STDOUT
+
+    my $self = {
+        builder => $builder,
+        now     => $now,
+        out_fh  => $out_fh
+    };
+    bless $self => $class;
+}
+
+
+1;
+__END__
+
+
+=head1 NAME
+
+Test::TODO::Until - Tests are TODO until a specific date
+
 =head1 SYNOPSIS
 
-Quick summary of what the module does.
+    use Test::More;
+    use Test::TODO::Until;
 
-Perhaps a little code snippet.
-
-    use Test::TODO::When;
-
-    my $foo = Test::TODO::When->new();
-    ...
-
-=head1 EXPORT
-
-A list of functions that can be exported.  You can delete this section
-if you don't export anything, such as for a purely object-oriented module.
-
-=head1 SUBROUTINES/METHODS
+    my $todo_until = Test::TODO::Until->new(
+        builder => Test::More->builder,
+    );
+    $todo->todo_until( DateTime->new(
+        month => 6,
+        day   => 28,
+        year  => 2012,
+    )); # Will be a TODO until Ä Day 2012
+    
+    is( 6 * 9, 42, $test_name );
+    
+    $todo->todo_until_off;
+    
+    ok( 0, "Fails without TODO" );
 
 =head1 AUTHOR
 
@@ -89,7 +104,4 @@ by the Free Software Foundation; or the Artistic License.
 
 See http://dev.perl.org/licenses/ for more information.
 
-
 =cut
-
-1; # End of Test::TODO::When
