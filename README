@@ -1,3 +1,7 @@
+ABOUT
+
+A small Perl module for setting a test to be TODO until a certain date passes.
+
 INSTALLATION
 
 To install this module, run the following commands:
