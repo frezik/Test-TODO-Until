@@ -9,14 +9,36 @@ sub new
     my ($class, $args) = @_;
     my $builder = $$args{builder} // die "Need a Test::Builder object\n";
     my $now = $$args{now} // DateTime->now;
-    my $out_fh = $$args{out_fh} // \*STDOUT
+    my $out_fh = $$args{out_fh} // \*STDOUT;
 
     my $self = {
         builder => $builder,
         now     => $now,
-        out_fh  => $out_fh
+        out_fh  => $out_fh,
     };
     bless $self => $class;
+}
+
+sub todo_until
+{
+    my ($self, $datetime) = @_;
+
+    # if $datetime > $$self{now}
+    if( DateTime->compare( $datetime,  $$self{now} ) == 1 ) {
+        my $dt_formatted = $$self{now}->month_abbr
+            . ' ' . $$self{now}->day
+            . ', ' . $$self{now}->year;
+        $$self{builder}->todo_start( "Due date: $dt_formatted" );
+    }
+
+    return 1;
+}
+
+sub todo_until_off
+{
+    my  ($self) = @_;
+    $$self{builder}->todo_end;
+    return 1;
 }
 
 
